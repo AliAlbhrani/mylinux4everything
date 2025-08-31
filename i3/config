@@ -205,7 +205,7 @@ exec_always --no-startup-id "/home/$USER/.config/polybar/forest/launch.sh"
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b 
 exec xinput set-prop "SYNA8020:00 06CB:CE5C Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id "setxkbmap -model pc105 -layout us,ara -option grp:win_space_toggle"
-exec --no-startup-id watch -n 120 ~/.config/scripts/battery-warning.sh
+exec --no-startup-id watch -n 120 "/home/$USER/.config/scripts/battery-warning.sh"
 ## Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
