@@ -89,7 +89,6 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+ctrl+h split h
-
 # split in vertical orientation
 bindsym $mod+v split v
 
@@ -205,12 +204,14 @@ exec_always --no-startup-id "/home/$USER/.config/polybar/forest/launch.sh"
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b 
 exec xinput set-prop "SYNA8020:00 06CB:CE5C Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id "setxkbmap -model pc105 -layout us,ara -option grp:win_space_toggle"
-exec --no-startup-id watch -n 120 "/home/$USER/.config/scripts/battery-warning.sh"
+exec --no-startup-id watch -n 120 "/home/$USER/.config/scripts/battery_low.sh"
 ## Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
 bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
 
+## lock shortcut
+bindsym $mod+Shift+i exec --no-startup-id i3lock-fancy --nofork
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
@@ -220,4 +221,7 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 bindsym CTRL+l exec --no-startup-id playerctl next -p spotify
 bindsym CTRL+j exec --no-startup-id playerctl previous -p spotify
 bindsym CTRL+k exec --no-startup-id playerctl play-pause -p spotify
+
+## emojies
+bindsym $mod+period exec --no-startup-id rofimoji
 
