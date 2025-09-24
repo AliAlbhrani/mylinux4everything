@@ -1,0 +1,2 @@
+-- vim.keymap.set("n", "<C-d>", "<cmd>call smoothie#do('<C-D>') <CR>")
+-- vim.keymap.set("v", "<C-d>", "<cmd>call smoothie#do('<C-D>') <CR>")

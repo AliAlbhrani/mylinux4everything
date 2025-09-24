@@ -66,43 +66,43 @@ cmp.setup({
 })
 
 -- Alternative keymaps for snippet navigation (if you prefer these)
-vim.keymap.set({"i", "s"}, "<C-L>", function() luasnip.jump( 1) end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-J>", function() luasnip.jump(-1) end, {silent = true})
+vim.keymap.set({ "i", "s" }, "<C-L>", function() luasnip.jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-J>", function() luasnip.jump(-1) end, { silent = true })
 
 local function set_lsp_keymaps(bufnr)
   local opts = { buffer = bufnr, silent = true, noremap = true }
-  
+
   -- Navigation
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
   vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  
+
   -- Documentation
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-  
+
   -- Workspace
   vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
   vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
   vim.keymap.set('n', '<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
-  
+
   -- Code actions
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
   vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-  
+
   -- Formatting
   vim.keymap.set('n', '<leader>f', function()
     vim.lsp.buf.format { async = true }
   end, opts)
-  
+
   -- Diagnostics - all types
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  
+
   -- Diagnostics - errors only
   vim.keymap.set('n', '[e', function()
     vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
@@ -110,7 +110,7 @@ local function set_lsp_keymaps(bufnr)
   vim.keymap.set('n', ']e', function()
     vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
   end, opts)
-  
+
   -- Diagnostics - warnings only
   vim.keymap.set('n', '[w', function()
     vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
@@ -129,8 +129,8 @@ end
 
 -- Configure LSP servers with snippet support
 vim.lsp.config('gopls', {
-  cmd = {'gopls'},
-  filetypes = {'go'},
+  cmd = { 'gopls' },
+  filetypes = { 'go' },
   capabilities = create_capabilities(),
   on_attach = function(client, bufnr)
     set_lsp_keymaps(bufnr)
@@ -139,9 +139,9 @@ vim.lsp.config('gopls', {
 })
 
 vim.lsp.config('luals', {
-  cmd = {'lua-language-server'},
-  filetypes = {'lua'},
-  root_markers = {'.luarc.json', '.luarc.jsonc'},
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  root_markers = { '.luarc.json', '.luarc.jsonc' },
   capabilities = create_capabilities(),
   on_attach = function(client, bufnr)
     set_lsp_keymaps(bufnr)
@@ -157,7 +157,7 @@ vim.diagnostic.config({
     source = "if_many", -- Show source if multiple LSPs are attached
     prefix = "●", -- Prefix character for virtual text
   },
-  
+
   -- Show diagnostics in signs column
   signs = {
     text = {
@@ -167,10 +167,10 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.INFO] = "»",
     },
   },
-  
+
   -- Update diagnostics while typing (can be resource intensive)
   update_in_insert = false,
-  
+
   -- Show diagnostics in floating window on cursor hold
   float = {
     focusable = false,
@@ -179,10 +179,10 @@ vim.diagnostic.config({
     source = 'always',
     prefix = '',
   },
-  
+
   -- Underline problematic text
   underline = true,
-  
+
   -- Sort diagnostics by severity
   severity_sort = true,
 })
@@ -202,6 +202,25 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end
 })
 
+local format_on_save_group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = format_on_save_group,
+  pattern = "*",
+  callback = function()
+    -- Check if LSP client supports formatting
+    local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+    for _, client in pairs(clients) do
+      if client.server_capabilities.documentFormattingProvider then
+        vim.lsp.buf.format({
+          async = false,
+          timeout_ms = 2000,
+        })
+        return
+      end
+    end
+  end,
+})
 -- Enable the LSP servers
 vim.lsp.enable('gopls')
 vim.lsp.enable('luals')
