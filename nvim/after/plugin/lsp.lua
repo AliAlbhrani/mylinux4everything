@@ -206,21 +206,23 @@ local format_on_save_group = vim.api.nvim_create_augroup("FormatOnSave", { clear
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = format_on_save_group,
-  pattern = "*",
-  callback = function()
-    -- Check if LSP client supports formatting
-    local clients = vim.lsp.get_active_clients({ bufnr = 0 })
-    for _, client in pairs(clients) do
-      if client.server_capabilities.documentFormattingProvider then
-        vim.lsp.buf.format({
-          async = false,
-          timeout_ms = 2000,
-        })
-        return
-      end
-    end
+  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.lua", "*.go" },
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf, timeout_ms = 2000 })
   end,
 })
 -- Enable the LSP servers
 vim.lsp.enable('gopls')
 vim.lsp.enable('luals')
+vim.lsp.config('ts_ls', {
+  cmd = { 'typescript-language-server', '--stdio' },
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  capabilities = create_capabilities(),
+  on_attach = function(client, bufnr)
+    -- Let conform handle formatting, not ts_ls
+    client.server_capabilities.documentFormattingProvider = false
+    set_lsp_keymaps(bufnr)
+  end,
+})
+
+vim.lsp.enable('ts_ls')

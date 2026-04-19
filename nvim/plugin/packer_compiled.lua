@@ -125,6 +125,11 @@ _G.packer_plugins = {
     path = "/home/alialbhrani/.local/share/nvim/site/pack/packer/start/codeium.vim",
     url = "https://github.com/Exafunction/codeium.vim"
   },
+  ["conform.nvim"] = {
+    loaded = true,
+    path = "/home/alialbhrani/.local/share/nvim/site/pack/packer/start/conform.nvim",
+    url = "https://github.com/stevearc/conform.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/alialbhrani/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -136,7 +141,7 @@ _G.packer_plugins = {
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["hot-reload.nvim"] = {
-    config = { "\27LJ\2\nŽ\1\0\0\4\0\6\0\r6\0\0\0009\0\1\0'\2\2\0006\3\0\0009\3\3\0039\3\4\3&\2\3\2B\0\2\0016\0\0\0009\0\1\0'\2\5\0B\0\2\1K\0\1\0#:silent! doautocmd ColorScheme\24default_colorscheme\6g\26:silent! colorscheme \bcmd\bvimÝ\1\1\0\5\0\v\0\0226\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2'\1\4\0&\0\1\0005\1\a\0004\2\3\0\18\3\0\0'\4\5\0&\3\4\3>\3\1\2\18\3\0\0'\4\6\0&\3\4\3>\3\2\2=\2\b\0013\2\t\0=\2\n\0012\0\0€L\1\2\0\20reload_callback\0\17reload_files\1\0\2\17reload_files\0\20reload_callback\0\0194-mappings.lua\0181-options.lua\15/lua/base/\vconfig\fstdpath\afn\bvim\0" },
+    config = { "\27LJ\2\nŽ\1\0\0\4\0\6\0\r6\0\0\0009\0\1\0'\2\2\0006\3\0\0009\3\3\0039\3\4\3&\2\3\2B\0\2\0016\0\0\0009\0\1\0'\2\5\0B\0\2\1K\0\1\0#:silent! doautocmd ColorScheme\24default_colorscheme\6g\26:silent! colorscheme \bcmd\bvimÝ\1\1\0\5\0\v\0\0226\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2'\1\4\0&\0\1\0005\1\a\0004\2\3\0\18\3\0\0'\4\5\0&\3\4\3>\3\1\2\18\3\0\0'\4\6\0&\3\4\3>\3\2\2=\2\b\0013\2\t\0=\2\n\0012\0\0€L\1\2\0\20reload_callback\0\17reload_files\1\0\2\20reload_callback\0\17reload_files\0\0194-mappings.lua\0181-options.lua\15/lua/base/\vconfig\fstdpath\afn\bvim\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -214,6 +219,12 @@ _G.packer_plugins = {
     path = "/home/alialbhrani/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["project.nvim"] = {
+    config = { "\27LJ\2\n˜\3\0\0\a\0\15\0\0236\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\3\0005\3\3\0005\4\4\0=\4\5\0035\4\6\0=\4\a\0034\4\0\0=\4\b\0034\4\0\0=\4\t\0036\4\n\0009\4\v\0049\4\f\4'\6\r\0B\4\2\2=\4\14\3>\3\1\2B\0\2\1K\0\1\0\rdatapath\tdata\fstdpath\afn\bvim\17exclude_dirs\15ignore_lsp\rpatterns\1\t\0\0\t.git\v_darcs\b.hg\t.bzr\t.svn\rMakefile\17package.json\vgo.mod\22detection_methods\1\3\0\0\blsp\fpattern\1\0\t\rpatterns\0\15ignore_lsp\0\17exclude_dirs\0\16show_hidden\2\rdatapath\0\17silent_chdir\1\16scope_chdir\vglobal\16manual_mode\1\22detection_methods\0\nsetup\17project_nvim\frequire\0" },
+    loaded = true,
+    path = "/home/alialbhrani/.local/share/nvim/site/pack/packer/start/project.nvim",
+    url = "https://github.com/ahmedkhalf/project.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/alialbhrani/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -238,6 +249,7 @@ _G.packer_plugins = {
     url = "https://github.com/kristijanhusak/vim-dadbod-completion"
   },
   ["vim-dadbod-ui"] = {
+    config = { "\27LJ\2\n6\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\1\0=\1\2\0K\0\1\0\25db_ui_use_nerd_fonts\6g\bvim\0" },
     loaded = true,
     path = "/home/alialbhrani/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui",
     url = "https://github.com/kristijanhusak/vim-dadbod-ui"
@@ -250,6 +262,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: vim-dadbod-ui
+time([[Config for vim-dadbod-ui]], true)
+try_loadstring("\27LJ\2\n6\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\1\0=\1\2\0K\0\1\0\25db_ui_use_nerd_fonts\6g\bvim\0", "config", "vim-dadbod-ui")
+time([[Config for vim-dadbod-ui]], false)
+-- Config for: project.nvim
+time([[Config for project.nvim]], true)
+try_loadstring("\27LJ\2\n˜\3\0\0\a\0\15\0\0236\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\3\0005\3\3\0005\4\4\0=\4\5\0035\4\6\0=\4\a\0034\4\0\0=\4\b\0034\4\0\0=\4\t\0036\4\n\0009\4\v\0049\4\f\4'\6\r\0B\4\2\2=\4\14\3>\3\1\2B\0\2\1K\0\1\0\rdatapath\tdata\fstdpath\afn\bvim\17exclude_dirs\15ignore_lsp\rpatterns\1\t\0\0\t.git\v_darcs\b.hg\t.bzr\t.svn\rMakefile\17package.json\vgo.mod\22detection_methods\1\3\0\0\blsp\fpattern\1\0\t\rpatterns\0\15ignore_lsp\0\17exclude_dirs\0\16show_hidden\2\rdatapath\0\17silent_chdir\1\16scope_chdir\vglobal\16manual_mode\1\22detection_methods\0\nsetup\17project_nvim\frequire\0", "config", "project.nvim")
+time([[Config for project.nvim]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
 try_loadstring("\27LJ\2\na\0\0\5\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\1K\0\1\0\vconfig\27alpha.themes.dashboard\nsetup\nalpha\frequire\0", "config", "alpha-nvim")
@@ -263,8 +283,8 @@ vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
 vim.cmd [[au FileType sql ++once lua require("packer.load")({'vim-dadbod-completion'}, { ft = "sql" }, _G.packer_plugins)]]
-vim.cmd [[au FileType mysql ++once lua require("packer.load")({'vim-dadbod-completion'}, { ft = "mysql" }, _G.packer_plugins)]]
 vim.cmd [[au FileType plsql ++once lua require("packer.load")({'vim-dadbod-completion'}, { ft = "plsql" }, _G.packer_plugins)]]
+vim.cmd [[au FileType mysql ++once lua require("packer.load")({'vim-dadbod-completion'}, { ft = "mysql" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
